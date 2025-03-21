@@ -83,29 +83,30 @@ if st.button("Analizar"):
                 resultados.append({
                     "Link": "No disponible",
                     "Assignment Name": "No hay tareas",
-                    "Rúbrica": "Error al obtener datos",
-                    "Puntos Totales": "Error al obtener datos",
-                    "Puntos Destacado": "Error al obtener datos",
-                    "Puntos Habilitado": "Error al obtener datos",
-                    "Puntos En desarrollo": "Error al obtener datos",
-                    "Puntos No logrado": "Error al obtener datos",
+                    "Rúbrica": "No hay datos",
+                    "Puntos Totales": "No hay datos",
+                    "Puntos Destacado": "No hay datos",
+                    "Puntos Habilitado": "No hay datos",
+                    "Puntos En desarrollo": "No hay datos",
+                    "Puntos No logrado": "No hay datos",
                 })
                 continue
             
             for assignment in assignments: 
                 assignment_id = assignment.get("id")
                 assignment_data = canvas_request(session, "GET", f"/courses/{course_id}/assignments/{assignment_id}")
+                link_assignment = f"[Ver Tarea]({LINK_URL}/courses/{course_id}/assignments/{assignment_id})"
                 
                 if not assignment_data:
                     resultados.append({
                         "Link": "No disponible",
-                        "Assignment Name": "Error al obtener datos",
-                        "Rúbrica": "Error al obtener datos",
-                        "Puntos Totales": "Error al obtener datos",
-                        "Puntos Destacado": "Error al obtener datos",
-                        "Puntos Habilitado": "Error al obtener datos",
-                        "Puntos En desarrollo": "Error al obtener datos",
-                        "Puntos No logrado": "Error al obtener datos",
+                        "Assignment Name": "No hay datos",
+                        "Rúbrica": "No hay datos",
+                        "Puntos Totales": "No hay datos",
+                        "Puntos Destacado": "No hay datos",
+                        "Puntos Habilitado": "No hay datos",
+                        "Puntos En desarrollo": "No hay datos",
+                        "Puntos No logrado": "No hay datos",
                     })
                     continue
                 
@@ -114,14 +115,14 @@ if st.button("Analizar"):
                 
                 if not rubric:
                     resultados.append({
-                        "Link": "No disponible",
+                        "Link": link_assignment,
                         "Assignment Name": assignment_data.get("name", "Sin nombre"),
-                        "Rúbrica": "Sin rúbrica",
-                        "Puntos Totales": "Error al obtener datos",
-                        "Puntos Destacado": "Error al obtener datos",
-                        "Puntos Habilitado": "Error al obtener datos",
-                        "Puntos En desarrollo": "Error al obtener datos",
-                        "Puntos No logrado": "Error al obtener datos",
+                        "Rúbrica": f":red[Sin rúbrica]",
+                        "Puntos Totales": "No hay datos",
+                        "Puntos Destacado": "No hay datos",
+                        "Puntos Habilitado": "No hay datos",
+                        "Puntos En desarrollo": "No hay datos",
+                        "Puntos No logrado": "No hay datos",
                     })
                     continue
                 
@@ -148,7 +149,7 @@ if st.button("Analizar"):
                             no_logrado += puntos
                 
                 resultados.append({
-                    "Link": f"[Ver Tarea]({LINK_URL}/courses/{course_id}/assignments/{assignment_id})",
+                    "Link": link_assignment,
                     "Assignment Name": assignment_data.get("name", "Sin nombre"),
                     "Rúbrica": rubric_title,
                     "Puntos Totales": points_possible,
