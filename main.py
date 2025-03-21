@@ -69,6 +69,7 @@ if st.button("Analizar"):
         for course_id in ids_list:
             if not course_id.isdigit():
                 st.warning(f"El ID '{course_id}' no es un id válido.")
+                st.divider()
                 continue
                 
             resultados = []
@@ -161,3 +162,4 @@ if st.button("Analizar"):
 
             # Usar st.write() con unsafe_allow_html para renderizar markdown en la tabla
             st.markdown(df.to_markdown(index=False), unsafe_allow_html=True)
+            st.divider()
