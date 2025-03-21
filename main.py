@@ -67,6 +67,10 @@ if st.button("Analizar"):
         session = requests.Session()
         
         for course_id in ids_list:
+            if not course_id.isdigit():
+                st.warning(f"El ID '{course_id}' no es un id válido.")
+                continue
+                
             resultados = []
             course_info = canvas_request(session, "GET", f"/courses/{course_id}")
             account_info = canvas_request(session, "GET", f"/accounts/{course_info.get('account_id')}")
