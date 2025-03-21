@@ -132,14 +132,14 @@ if st.button("Analizar"):
                     for rating in criterio.get("ratings", []):
                         descripcion = clean_string(rating.get("description", ""))
                         puntos = int(rating.get("points", 0))
-                        
-                        if descripcion == clean_string("Destacado"):
+                        #st.write(descripcion)
+                        if descripcion == clean_string("Destacado") or descripcion.startswith(clean_string("Destacado")):
                             destacado += puntos
-                        elif descripcion == clean_string("Habilitado"):
+                        elif descripcion == clean_string("Habilitado") or descripcion.startswith(clean_string("Habilitado")):
                             habilitado += puntos
-                        elif descripcion == clean_string("En desarrollo"):
+                        elif descripcion == clean_string("En desarrollo") or descripcion.startswith(clean_string("En desarrollo")):
                             en_desarrollo += puntos
-                        elif descripcion == clean_string("No logrado"):
+                        elif descripcion == clean_string("No logrado") or descripcion.startswith(clean_string("No logrado")):
                             no_logrado += puntos
                 
                 resultados.append({
